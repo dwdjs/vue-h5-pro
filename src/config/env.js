@@ -5,12 +5,12 @@ const baseEnv = {
   apiEnv: 'prod',
   apiBaseUrl: 'https://m.api.xxx.com',
   isEnv(current) {
-    const { stage } = this;
+    const { stage } = this
     return (
       stage === current ||
       (Array.isArray(current) && current.indexOf(stage) > -1)
-    );
+    )
   },
-};
+}
 
-export default baseEnv;
+export default baseEnv

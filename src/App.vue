@@ -87,6 +87,7 @@ export default {
 
       let isShow
       // cart 特殊处理，如果不是 tabbar 页面进入的 cart，就不显示 tabbar
+      // BUG: 当从购物车去详情，之后再返回，出问题了（非 tab 进 cart）
       if (name === 'cart' && oldVal.name) {
         isShow = ['index', 'fire', 'profile'].includes(oldVal.name)
       } else {
