@@ -1,0 +1,58 @@
+{
+  "name": "@dwdjs/vue-h5-pro",
+  "version": "1.0.0",
+  "description": "@dwdjs/vue-h5-pro",
+  "author": "cloudyan <cloudyan@cloudai.net>",
+  "license": "MIT",
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint"
+  },
+  "dependencies": {
+    "@dwdjs/vant": "2.1.10",
+    "vue": "^2.6.10",
+    "vue-router": "^3.1.3",
+    "vuex": "^3.1.1"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-eslint": "^3.11.0",
+    "@vue/cli-service": "^3.11.0",
+    "babel-plugin-import": "^1.12.1",
+    "less": "^3.10.3",
+    "less-loader": "^5.0.0",
+    "postcss-px-to-viewport": "^1.1.1",
+    "register-service-worker": "^1.6.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {},
+      "postcss-px-to-viewport": {
+        "viewportWidth": 375,
+        "selectorBlackList": [
+          "van-circle__layer"
+        ]
+      }
+    }
+  },
+  "browserslist": [
+    "Android >= 4.0",
+    "iOS >= 7"
+  ]
+}
