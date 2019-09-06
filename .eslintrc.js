@@ -7,7 +7,7 @@ module.exports = {
     ecmaVersion: 2019,
   },
   env: {
-    node: true
+    node: true,
   },
   extends: [
     'plugin:vue/recommended',
@@ -33,7 +33,7 @@ module.exports = {
       'multiline': {
         'max': 1,
         'allowFirstLine': false,
-      }
+      },
     }],
     'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
@@ -139,4 +139,4 @@ module.exports = {
     'consistent-return': 'off',
   },
 
-};
+}
