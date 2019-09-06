@@ -1,18 +1,30 @@
 <template>
   <div class="page-index">
-
     <van-cell-group title="demo">
-      <van-cell title="详情页" @click.native="goNext" data-link="detail" is-link />
-      <van-cell title="购物车" @click.native="goNext" data-link="cart" is-link />
-      <van-cell title="个人中心" @click.native="goNext" data-link="profile" is-link />
+      <van-cell
+        title="详情页"
+        data-link="detail"
+        is-link
+        @click.native="goNext"
+      />
+      <van-cell
+        title="购物车"
+        data-link="cart"
+        is-link
+        @click.native="goNext"
+      />
+      <van-cell
+        title="个人中心"
+        data-link="profile"
+        is-link
+        @click.native="goNext"
+      />
     </van-cell-group>
-
-
   </div>
 </template>
 
 <script>
-import { Col, Icon, Cell, CellGroup } from '@dwdjs/vant';
+import { Col, Icon, Cell, CellGroup } from '@dwdjs/vant'
 
 export default {
   components: {
@@ -24,25 +36,24 @@ export default {
 
   methods: {
     goNext(e) {
-      const { link } = e.currentTarget.dataset;
+      const { link } = e.currentTarget.dataset
 
-      switch(link) {
+      switch (link) {
         case 'detail':
         case 'cart':
         case 'profile':
           this.$router.push(`${link}`)
-          break;
+          break
         default:
-          // do nothing...
+        // do nothing...
       }
     },
   },
-};
+}
 </script>
 
 <style lang="less" scoped>
 .demo {
-
   &-group {
     margin-bottom: 15px;
   }

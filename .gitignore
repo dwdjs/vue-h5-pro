@@ -62,3 +62,5 @@ typings/
 
 yarn.lock
 temp
+.sonarlint
+.scannerwork

@@ -10,30 +10,48 @@
       <h3>切换 API</h3>
       <div class="content">
         <label class="btn">
-          <input class="absolute-full" type="radio" v-model="apiEnv" data-type="env" value="prod" />Prod
+          <input
+            v-model="apiEnv"
+            class="absolute-full"
+            type="radio"
+            data-type="env"
+            value="prod"
+          >Prod
         </label>
         <label class="btn">
-          <input class="absolute-full" type="radio" v-model="apiEnv" data-type="env" value="beta" />Beta
+          <input
+            v-model="apiEnv"
+            class="absolute-full"
+            type="radio"
+            data-type="env"
+            value="beta"
+          >Beta
         </label>
         <label class="btn">
-          <input class="absolute-full" type="radio" v-model="apiEnv" data-type="env" value="dev" />Dev
+          <input
+            v-model="apiEnv"
+            class="absolute-full"
+            type="radio"
+            data-type="env"
+            value="dev"
+          >Dev
         </label>
         <div class="flex-middle input-group input-group--append">
           <input
+            v-model="apiBaseUrl"
             class="input-text flex-1"
             type="text"
-            v-model="apiBaseUrl"
             placeholder="示例: m.api.xxx.com"
-          />
+          >
           <label class="btn input-group__append">
             <input
+              v-model="apiEnv"
               class="absolute-full"
               type="radio"
-              v-model="apiEnv"
               data-type="env"
               data-value="custom"
               value="custom"
-            />使用此API
+            >使用此API
           </label>
         </div>
       </div>
@@ -58,20 +76,20 @@
       <h3>当前信息</h3>
       <div class="content">
         <textarea
+          id=""
+          v-model="result"
           class="textarea"
           name="result"
-          id=""
           style="height: 500px;"
-          v-model="result"
-        ></textarea>
+        />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import { Tag } from '@dwdjs/vant';
-import env from '@/config/env';
+import { Tag } from '@dwdjs/vant'
+import env from '@/config/env'
 
 export default {
   components: {
@@ -82,15 +100,15 @@ export default {
       apiEnv: env.apiEnv,
       apiBaseUrl: env.apiBaseUrl,
       result: '',
-    };
+    }
   },
   watch: {
     apiEnv(val, oldVal) {
-      if (val === oldVal) return;
-      if (val === 'custom' && !this.apiBaseUrl) return;
-      this.$showToast(`切换API: ${oldVal} => ${val}`);
+      if (val === oldVal) return
+      if (val === 'custom' && !this.apiBaseUrl) return
+      this.$showToast(`切换API: ${oldVal} => ${val}`)
       // env.switchApi(val, this.apiBaseUrl);
-      this.apiBaseUrl = env.apiBaseUrl;
+      this.apiBaseUrl = env.apiBaseUrl
     },
     // apiBaseUrl(val, oldVal) {
     //   // this.$showToast(`${oldVal} => ${val}`);
@@ -103,32 +121,32 @@ export default {
       `userAgent: ${navigator.userAgent}`,
       `platform: ${navigator.platform}`,
       `env: ${JSON.stringify(env, null, 2)}`,
-    ].join('\n\n');
+    ].join('\n\n')
   },
   methods: {
     goNext(e) {
-      const { type, value } = e.target.dataset;
+      const { type, value } = e.target.dataset
       switch (type) {
         case 'bridge':
-          this.$router.push('bridge');
-          break;
+          this.$router.push('bridge')
+          break
         case 'clear':
-          this.result = '';
-          break;
+          this.result = ''
+          break
         case 'tongji':
           // this.tongji(value);
-          break;
+          break
         case 'env':
           if (value === 'custom') {
             // debugger;
-            env.switchApi(value, this.apiBaseUrl);
+            env.switchApi(value, this.apiBaseUrl)
           }
           // env.changeEnv(this.env);
           // this.env = env.stage;
           // this.apiBaseUrl = env.apiBaseUrl;
-          break;
+          break
         default: {
-          break;
+          break
         }
       }
     },
