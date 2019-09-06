@@ -1,0 +1,174 @@
+@import './normalize.css';
+
+// NOTE: 注意在main.js 中引入的话，postcss的应用不是很好 如short-posscss
+
+// http://stackoverflow.com/a/13611748/3040605
+// 设置数字的字体
+@font-face {
+  font-family: "Helvetica Neue For Number";
+  src: local("Helvetica Neue");
+  unicode-range: U+30-39;
+}
+
+// Reset the box-sizing
+// html {
+* {
+  box-sizing: border-box;
+
+  // remove tap highlight color for mobile safari
+  -webkit-tap-highlight-color: transparent;
+}
+
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+button,
+input,
+select,
+optgroup,
+textarea {
+  color: inherit;
+  font: inherit;
+  margin: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.absolute-full {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// placeholder并不支持padding和height值，在Android手机原生浏览器里面如果设置了line-height的值，比如设为line-height:32px
+// 在Android自带浏览器、百度手机浏览器、小米自带浏览器上出现图一的问题（占位符靠顶部）。uc/qq正常
+// 解决办法：把line-height设置为line-height:normal(或者不设置行高问题，只设置padding即可)
+// 参看：
+// http://stackoverflow.com/questions/4919680/html5-placeholder-css-padding
+// http://caibaojian.com/html5-placeholder-discuzz.html
+input {
+  line-height: normal !important;
+  outline: none !important;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 0px;
+  height: 4px;
+  background-color: transparent;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  // border-radius: 4px;
+  background-color: transparent;
+  display: none;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  // border-radius: 4px;
+  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  // background-color: rgba(193, 193, 193, 0.5);
+  display: none;
+}
+
+.fr {
+  float: right;
+}
+.fl {
+  float: left;
+}
+.text-center {
+  text-align: center;
+}
+
+.pr {
+  position: relative;
+}
+
+.f10 {
+  font-size: 12px;
+  transform: scale(0.834);
+}
+.f8 {
+  font-size: 12px;
+  transform: scale(0.75);
+}
+
+// flex：定义布局为盒模型
+// flex-v：盒模型垂直布局
+// flex-1：子元素占据剩余的空间
+// flex-align-center：子元素垂直居中
+// flex-pack-center：子元素水平居中
+// flex-pack-justify：子元素两端对齐
+.flex { display: flex; }
+.flex-v { display: flex; flex-direction: column; }
+.flex-1 { flex: 1; }
+.flex-inline {
+  flex: 1;
+  display: inline-flex;
+}
+.flex-wrap {
+  flex-wrap: wrap;
+}
+.flex-shrink {
+  flex-shrink: 0;
+}
+.flex-grow {
+  flex-shrink: 0;
+}
+
+.flex-middle {
+  display: flex;
+  align-items: center;
+}
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.flex-around {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+// flex-direction 定义主轴方向
+// 元素的对齐方式
+// justify-content 伸缩行 主轴（横轴）方向上（控制整体内容）
+// align-content 伸缩行 侧轴方向的对齐方式
+// align-items 当前行侧轴方向的对齐方式（元素主轴方向排布，这排布的这一行元素本身有个对齐方式）
+.flex-justify-start   { justify-content: flex-start; }
+.flex-justify-center  { justify-content: center; }
+.flex-justify-end     { justify-content: flex-end; }
+.flex-justify-between { justify-content: space-between; }
+.flex-justify-around  { justify-content: space-around; }
+
+// 请注意本属性 align-content 在只有一行的伸缩容器上没有效果。
+.flex-align-start   { align-content: flex-start; }
+.flex-align-center  { align-content: center; }
+.flex-align-end     { align-content: flex-end; }
+.flex-align-between { align-content: space-between; }
+.flex-align-around  { align-content: space-around; }
+.flex-align-stretch { align-content: stretch; }
+
+.flex-items-start   { align-items: flex-start; }
+.flex-items-center  { align-items: center; }
+.flex-items-end     { align-items: flex-end; }
+.flex-items-stretch { align-items: stretch; }
