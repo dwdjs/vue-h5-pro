@@ -4,7 +4,7 @@ module.exports = {
     [
       'import',
       { libraryName: '@dwdjs/vant', libraryDirectory: 'es', style: true },
-      'vant'
-    ]
-  ]
-};
+      'vant',
+    ],
+  ],
+}
