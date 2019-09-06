@@ -1,13 +1,13 @@
-import Vue from 'vue';
-import Router from 'vue-router';
-import env from '@/config/env';
+import Vue from 'vue'
+import Router from 'vue-router'
+import env from '@/config/env'
 
-Vue.use(Router);
+Vue.use(Router)
 
 const lazyLoad =
   process.env.NODE_ENV === 'production'
     ? file => () => import(/* webpackChunkName: "[name]-[index]" */ '@/view/' + file + '.vue')
-    : file => require('@/view/' + file + '.vue').default;
+    : file => require('@/view/' + file + '.vue').default
 
 const routes = [
   {
@@ -15,31 +15,31 @@ const routes = [
     name: 'index',
     alias: '/index',
     component: lazyLoad('index'),
-    meta: { title: '首页' }
+    meta: { title: '首页' },
   },
   {
     name: 'profile',
     component: lazyLoad('profile'),
-    meta: { title: '个人中心' }
+    meta: { title: '个人中心' },
   },
   {
     name: 'cart',
     component: lazyLoad('cart'),
-    meta: { title: '购物车' }
+    meta: { title: '购物车' },
   },
   {
     name: 'detail',
     component: lazyLoad('detail'),
-    meta: { title: '商品详情' }
+    meta: { title: '商品详情' },
   },
-];
+]
 
 if (env.isEnv('prod')) {
   routes.unshift({
     name: 'debug',
     component: lazyLoad('common/debug'),
     meta: { title: 'Debug 调试页面', needAuth: false },
-  });
+  })
 }
 
 routes.push(
@@ -52,8 +52,8 @@ routes.push(
 
 // add route path
 routes.forEach(route => {
-  if (typeof route.path === 'undefined') route.path = '/' + (route.name || '');
-});
+  if (typeof route.path === 'undefined') route.path = '/' + (route.name || '')
+})
 
 const router = new Router({
   mode: env.routerMode,
@@ -66,6 +66,6 @@ const router = new Router({
   //   }
   // },
   routes,
-});
+})
 
-export default router;
+export default router

@@ -1,17 +1,17 @@
-import router from '@/router';
+import router from '@/router'
 
 router.beforeEach((to, from, next) => {
-  const { meta = {} } = to;
+  const { meta = {} } = to
 
   // 解决拦截 router-link 跳转问题
   if (meta.status === -1) {
-    return next(false);
+    return next(false)
   }
 
   if (meta.title) {
-    document.title = meta.title;
+    document.title = meta.title
   }
 
   // 确保一定要调用 next()
-  return next();
+  return next()
 })
