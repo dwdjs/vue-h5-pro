@@ -9,7 +9,7 @@ const __PROD__ = process.env.NODE_ENV === 'production'
 
 module.exports = {
   // outputDir: 'dist',
-  publicPath: __DEV__ ? `/` : '/',
+  publicPath: __DEV__ ? `./` : './',
   assetsDir: __DEV__ ? './' : './static',
   configureWebpack: config => {
     // console.log(config);
@@ -19,9 +19,9 @@ module.exports = {
   },
   css: {
     sourceMap: !__PROD__,
-    extract: true,
+    // extract: true,
   },
-  productionSourceMap: !__PROD__,
+  productionSourceMap: true, // !__PROD__,
   lintOnSave: !__PROD__,
   runtimeCompiler: false,
   // crossorigin: 'anonymous',
