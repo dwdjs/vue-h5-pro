@@ -6,8 +6,8 @@ Vue.use(Router)
 
 const lazyLoad =
   process.env.NODE_ENV === 'production'
-    ? file => () => import(/* webpackChunkName: "[name]-[index]" */ '@/view/' + file + '.vue')
-    : file => require('@/view/' + file + '.vue').default
+    ? file => import(/* webpackChunkName: "[request]" */ `@/view/${file}`)
+    : file => require(`@/view/${file}`).default
 
 const routes = [
   {

@@ -64,3 +64,4 @@ yarn.lock
 temp
 .sonarlint
 .scannerwork
+dist/
