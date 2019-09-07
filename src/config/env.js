@@ -1,6 +1,6 @@
 const baseEnv = {
   stage: 'prod', // 发行版本
-  routerBase: '',
+  routerBase: '/vue-h5-pro/',
   routerMode: 'history',
   apiEnv: 'prod',
   apiBaseUrl: 'https://m.api.xxx.com',
