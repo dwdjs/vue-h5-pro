@@ -17,7 +17,7 @@
 - [ ] 数据统计接入方案
 - [ ] 错误上报统计功能
 - [x] 添加 eslint + prettier 代码格式检查，参看[./docs/rule.md]
-  - [ ] 添加 webpack 插件，开发环境支持使用 console.log，生产包自动删除
+  - [x] 添加 webpack 插件，开发环境支持使用 console.log，生产包自动删除
 
 ### 页面功能扩展
 
