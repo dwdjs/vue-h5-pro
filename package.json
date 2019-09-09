@@ -8,6 +8,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
+    "commit": "npm run lint & npx git-cz",
     "deploy": "npm run build && npm run deployOnly",
     "deployOnly": "gh-pages -d dist --message $(git symbolic-ref --short -q HEAD)-$(git rev-parse --short HEAD)"
   },
