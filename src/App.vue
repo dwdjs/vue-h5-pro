@@ -15,15 +15,11 @@
     <keep-alive>
       <router-view />
     </keep-alive>
-    <van-tabbar
-      v-show="showTabBar"
-      v-model="curTabBar"
-      class="dwd-tab-bar"
-    >
+    <van-tabbar v-show="showTabBar" v-model="curTabBar" class="dwd-tab-bar">
       <van-tabbar-item name="index" replace to="/index" icon="home-o">首页</van-tabbar-item>
-      <van-tabbar-item name="fire" to="/detail" icon="fire-o">精品推荐</van-tabbar-item>
-      <van-tabbar-item name="cart" replace to="/cart" icon="shopping-cart-o">购物车</van-tabbar-item>
-      <!-- <van-tabbar-item name="sort" replace to="/sort" icon="apps-o">分类</van-tabbar-item> -->
+      <van-tabbar-item name="sort" replace to="/sort" icon="apps-o">分类</van-tabbar-item>
+      <van-tabbar-item name="fire" replace to="/fire" icon="fire-o">发现</van-tabbar-item>
+      <van-tabbar-item name="cart" replace to="/cart?tabbar=1" icon="shopping-cart-o">购物车</van-tabbar-item>
       <van-tabbar-item name="profile" replace to="/profile" icon="user-o">我的</van-tabbar-item>
     </van-tabbar>
   </div>
@@ -32,7 +28,8 @@
 <script>
 import { NavBar, Tabbar, TabbarItem } from '@dwdjs/vant'
 
-const tabbarPathArr = ['index', 'fire', 'cart', 'profile']
+// 首页 分类 发现/拼购 购物车 我的/未登录
+const tabbarPathArr = ['index', 'sort', 'fire', 'cart', 'profile']
 
 export default {
   components: {
@@ -59,12 +56,13 @@ export default {
     },
   },
   watch: {
-    ['$route']: function (val, oldVal) {
-      this.watchRoute(val, oldVal)
+    $route: {
+      handler: 'watchRoute',
+      immediate: true, // 立即执行
     },
   },
   created() {
-    this.watchRoute(this.$route)
+    // this.watchRoute(this.$route)
   },
   methods: {
     onBack() {
@@ -87,9 +85,10 @@ export default {
 
       let isShow
       // cart 特殊处理，如果不是 tabbar 页面进入的 cart，就不显示 tabbar
-      // BUG: 当从购物车去详情，之后再返回，出问题了（非 tab 进 cart）
-      if (name === 'cart' && oldVal.name) {
-        isShow = ['index', 'fire', 'profile'].includes(oldVal.name)
+      // FIXED: 当从购物车去详情，之后再返回，出问题了（本质是购物车去详情之后返回，tabbar 判断失败）
+      // 通过区分 forward/back 是走不通的（问：当前页面刷新后是什么方式进入的），需要使用 url 参数控制(默认隐藏，非隐藏加参数)
+      if (name === 'cart') {
+        isShow = val.query.tabbar // tabbarPathArr.includes(oldVal.name)
       } else {
         isShow = tabbarPathArr.includes(name)
       }

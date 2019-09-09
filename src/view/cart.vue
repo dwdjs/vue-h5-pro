@@ -1,5 +1,6 @@
 <template>
   <div>
+    <router-link to="/detail">测试去详情</router-link>
     <van-checkbox-group v-model="checkedGoods" class="card-goods">
       <van-checkbox
         v-for="item in goods"

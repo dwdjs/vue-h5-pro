@@ -1,6 +1,9 @@
+
+const isProd = process.env.NODE_ENV === 'production'
+
 const baseEnv = {
   stage: 'prod', // 发行版本
-  routerBase: '/vue-h5-pro/',
+  routerBase: isProd ? '/vue-h5-pro/' : '',
   routerMode: 'history',
   apiEnv: 'prod',
   apiBaseUrl: 'https://m.api.xxx.com',
