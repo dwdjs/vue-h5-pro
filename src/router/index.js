@@ -18,14 +18,24 @@ const routes = [
     meta: { title: '首页' },
   },
   {
-    name: 'profile',
-    component: lazyLoad('profile'),
-    meta: { title: '个人中心' },
+    name: 'sort',
+    component: lazyLoad('sort'),
+    meta: { title: '分类' },
+  },
+  {
+    name: 'fire',
+    component: lazyLoad('fire'),
+    meta: { title: '发现' },
   },
   {
     name: 'cart',
     component: lazyLoad('cart'),
     meta: { title: '购物车' },
+  },
+  {
+    name: 'profile',
+    component: lazyLoad('profile'),
+    meta: { title: '个人中心' },
   },
   {
     name: 'detail',
