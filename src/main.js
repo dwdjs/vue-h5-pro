@@ -21,14 +21,16 @@ function initVue(time = 0) {
   }, time)
 }
 
+// 判断URL query 参数，如果有d_console参数，即开启 vConsole
+// 使用增强版的 qs 判断，加缓存层
 if (!env.console) {
   initVue()
 } else {
-  const vConsole = 'https://unpkg.com/kit-debug@latest'
+  const vConsole = 'https://dwdjs.github.io/vConsole/dist/vconsole.min.js'
   loadJs(vConsole, {
     async: true,
     // defer: true,
-    // first: true,
+    first: true,
     onload() {
       /* eslint no-undef: 0 */
       if (typeof VConsole !== 'undefined') {
