@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --report",
     "lint": "vue-cli-service lint",
     "commit": "npm run lint & npx git-cz",
     "deploy": "npm run build && npm run deployOnly",
