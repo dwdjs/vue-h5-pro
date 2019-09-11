@@ -90,7 +90,7 @@ module.exports = {
       name: true,
       cacheGroups: {
         vendors: {
-          test: /[\\/]node_modules[\\/]/, // 符合条件的就回被提取，不写默认选择所有模块
+          test: /[\\/]node_modules[\\/]/, // 符合条件的就会被提取，不写默认选择所有模块
           priority: -10, // 优先级，当同一个模块同时包含在不同cacheGroup中，该模块将被划分到优先级高的组中
         },
         default: { // 默认缓存组的配置
