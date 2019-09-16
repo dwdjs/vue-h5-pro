@@ -10,6 +10,8 @@
     "lint": "vue-cli-service lint",
     "dll": "vue-cli-service dll",
     "commit": "npm run lint & npx git-cz",
+    "test:e2e": "vue-cli-service test:e2e",
+    "test:unit": "vue-cli-service test:unit",
     "deploy": "npm run build && npm run deployOnly",
     "deployOnly": "gh-pages -d dist --message $(git symbolic-ref --short -q HEAD)-$(git rev-parse --short HEAD)"
   },
@@ -23,11 +25,16 @@
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^3.11.0",
+    "@vue/cli-plugin-e2e-cypress": "^3.11.0",
     "@vue/cli-plugin-eslint": "^3.11.0",
     "@vue/cli-plugin-pwa": "^3.11.0",
+    "@vue/cli-plugin-unit-jest": "^3.11.0",
     "@vue/cli-service": "^3.11.0",
     "@vue/eslint-config-prettier": "^5.0.0",
+    "@vue/test-utils": "^1.0.0-beta.29",
+    "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "^10.0.3",
+    "babel-jest": "^24.9.0",
     "babel-plugin-import": "^1.12.1",
     "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^6.3.0",
@@ -41,20 +48,5 @@
     "register-service-worker": "^1.6.2",
     "vue-cli-plugin-dll": "^1.1.11",
     "vue-template-compiler": "^2.6.10"
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {},
-      "postcss-px-to-viewport": {
-        "viewportWidth": 375,
-        "selectorBlackList": [
-          "van-circle__layer"
-        ]
-      }
-    }
-  },
-  "browserslist": [
-    "Android >= 4.0",
-    "iOS >= 7"
-  ]
+  }
 }

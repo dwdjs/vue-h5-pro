@@ -20,7 +20,7 @@ module.exports = {
   },
   // 将修改 merge 到 webpack 配置中
   chainWebpack: config => {
-    if (!__DEV__) {}
+    // if (!__DEV__) {}
     /**
       第三方库提取（分四层）
       - config.optimization.delete('splitChunks') // 删除默认的
