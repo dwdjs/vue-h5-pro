@@ -32,6 +32,7 @@
   - [ ] 保存 sourceMap，用于跟踪调试线上 bug
 - [ ] 应对 CPS 需求实现，代码隔离优化
 - [ ] 解决 vue.config.js 的不透明问题，改配置为 webpack 配置
+- [ ] 增加 TDD
 
 ### 页面功能扩展
 

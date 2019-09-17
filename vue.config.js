@@ -20,7 +20,7 @@ module.exports = {
   },
   // 将修改 merge 到 webpack 配置中
   chainWebpack: config => {
-    if (!__DEV__) {}
+    // if (!__DEV__) {}
     /**
       第三方库提取（分四层）
       - config.optimization.delete('splitChunks') // 删除默认的
@@ -32,7 +32,7 @@ module.exports = {
       */
 
     // 移除 prefetch 插件
-    // config.plugins.delete('prefetch')
+    config.plugins.delete('prefetch')
     config.optimization.splitChunks({
       chunks: 'all',
       minSize: 60000, // byte, 30kb
@@ -46,7 +46,7 @@ module.exports = {
         // 抽取第三方模块
         libs: {
           name: `chunk-lib`,
-          test: /[\\/]node_modules[\\/](vue|vuex|vue-router|axios|register-service-worker)[\\/]/,
+          test: /[\\/]node_modules[\\/](vue|vuex|vue-router|axios)[\\/]/,
           priority: 0,
           chunks: 'initial',
         },
@@ -72,5 +72,5 @@ module.exports = {
   productionSourceMap: !__PROD__,
   lintOnSave: !__PROD__,
   runtimeCompiler: false,
-  // crossorigin: 'anonymous',
+  crossorigin: 'anonymous',
 }

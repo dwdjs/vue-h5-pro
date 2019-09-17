@@ -6,8 +6,8 @@ Vue.use(Router)
 
 const lazyLoad =
   process.env.NODE_ENV === 'production'
-    ? file => () => import(/* webpackChunkName: "[request]" */ `@/view/${file}`)
-    : file => require(`@/view/${file}`).default
+    ? file => () => import(/* webpackChunkName: "[request]" */ `@/views/${file}`)
+    : file => require(`@/views/${file}`).default
 
 const routes = [
   {
@@ -41,6 +41,11 @@ const routes = [
     name: 'detail',
     component: lazyLoad('detail'),
     meta: { title: '商品详情' },
+  },
+  {
+    name: 'login',
+    component: lazyLoad('login'),
+    meta: { title: '快捷登录' },
   },
 ]
 

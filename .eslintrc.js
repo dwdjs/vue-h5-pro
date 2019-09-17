@@ -25,6 +25,14 @@ module.exports = {
     URL: false,
     isNaN: false,
   },
+  overrides: [
+    {
+      files: ["**/__tests__/*.{j,t}s?(x)"],
+      env: {
+        jest: true
+      }
+    }
+  ],
   rules: {
     // https://yepbug.com/2018/08/28/what-is-the-benefit-of-prefer-default-export/
     'import/prefer-default-export': 'off', // 输出只有一个变量时使用 export default
