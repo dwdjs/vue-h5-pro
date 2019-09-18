@@ -13,7 +13,7 @@
       @click-right="onClickRight"
     />
     <keep-alive>
-      <router-view />
+      <router-view class="page-view" />
     </keep-alive>
     <van-tabbar v-show="showTabBar" v-model="curTabBar" class="dwd-tab-bar">
       <van-tabbar-item name="index" replace to="/index" icon="home-o">首页</van-tabbar-item>
@@ -103,6 +103,8 @@ export default {
 @import '~@/style/base';
 
 body {
+  min-width: 100vw;
+  overflow-x: hidden;
   font-size: 16px;
   background-color: #f8f8f8;
   -webkit-font-smoothing: antialiased;
@@ -133,14 +135,33 @@ body {
   // TODO: 默认 tabbar 组件内联添加了 index: 1，是否应该移除
   z-index: 600 !important;
 }
+
+.page-view {
+  position: relative;
+  min-height: 100vh;
+  padding-bottom: 20px;
+}
+
 .has-nav-bar {
-  padding-top: 50px;
+  > .page-view {
+    margin-bottom: -50px;
+    padding-top: 50px;
+    // min-height: 100vh;
+    // padding-bottom: 70px;
+    // margin-top: -50px;
+  }
 }
 
 // TIP: 购物车不是从 tab-bar 进入就不会显示 tabbar，也不是replace 形式进入
 .has-tab-bar {
   padding-bottom: 50px;
 
+  > .page-view {
+    padding-bottom: 70px;
+  }
+
+  // TIP: 如果底部有 fixed 定位的元素，则 .page-view 需要加大内下边距
+  // 可以对应页面自定义，如 .page-order-commit { padding-bottom: 70px; } 不要设置 padding-top，会覆盖 .has-nav-bar 的设定
   .fix-bottom-fixed {
     bottom: 50px;
   }

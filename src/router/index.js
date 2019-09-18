@@ -47,6 +47,16 @@ const routes = [
     component: lazyLoad('login'),
     meta: { title: '快捷登录' },
   },
+  {
+    name: 'address',
+    component: lazyLoad('order-commit'),
+    meta: { title: '确认订单', needAuth: true },
+  },
+  {
+    name: 'order-commit',
+    component: lazyLoad('order-commit'),
+    meta: { title: '确认订单', needAuth: true },
+  },
 ]
 
 if (env.isEnv('prod')) {

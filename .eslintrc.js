@@ -43,9 +43,10 @@ module.exports = {
         'allowFirstLine': false,
       },
     }],
-    'vue/singleline-html-element-content-newline': 'off',
     'vue/multiline-html-element-content-newline': 'off',
+    'vue/require-default-prop': 'off',
     // 'vue/no-unused-components': '1',
+    'vue/singleline-html-element-content-newline': 'off',
     'comma-dangle': [
       'error',
       {

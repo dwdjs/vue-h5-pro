@@ -8,6 +8,12 @@ import '@/permission'
 
 import env from '@/config/env'
 
+import mini from '@/utils/mini'
+
+Object.keys(mini).forEach(key => {
+  Vue.prototype[`$${key}`] = mini[key]
+})
+
 function initVue(time = 0) {
   // 把初始化渲染放到 setTimeout 里，延迟vue初始化，兼顾骨架屏
   setTimeout(() => {

@@ -37,6 +37,17 @@ textarea {
   -webkit-font-smoothing: antialiased;
 }
 
+html,
+body,
+#app {
+  min-height: 100vh;
+}
+
+// 如果父级 height: auto 则子级 height: 100% 不生效
+#app > .page {
+  height: 100%;
+}
+
 .absolute-full {
   position: absolute;
   top: 0;

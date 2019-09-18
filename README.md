@@ -10,15 +10,17 @@
 
 - [x] 采用 vw/vh 移动端适配方案，并禁用缩放
 - [x] 区分router 在 dev/prod 模式下的引入方式，开发模式编译更快
-- [x] 增加 debug 调试功能，引入 vConsole
+- 增加 debug 调试功能，
+  - [x] 引入 vConsole
+  - [x] 增加 vscode debug 配置（此配置非常适合 nodejs 程序，web 程序还需要调试 dom，不算方便）
   - [ ] 结合 api 配置接口，支持动态切换 api（或使用代理切换）
 - [x] 添加 eslint + prettier 代码格式检查，并对格式预期可控，参看[./docs/rule.md]
 - [x] 锁定 package.json 版本号，避免非预期的升级更新
 - [x] 封装 docker
-- [ ] webpack 优化
+- webpack 优化
   - [x] 添加 babel 插件，开发环境支持 console.log，生产包自动清除
-  - [ ] Code Splitting 拆分代码块
-  - [ ] 处理第三方独立模块的按需引用问题
+  - [x] Code Splitting 拆分代码块
+  - [x] 处理第三方独立模块的按需引用问题
   - [ ] 独立稳定跨端包抽取 dll，能提高缓存及跨端复用，也能提升编译速度
     - [ ] vue-h5-pro: `['vue/dist/vue.runtime.esm.js', 'vue-router', 'vuex', 'axios', 'register-service-worker', 'qs']`
     - [ ] vue-admin-pro: `[...${vueH5Pro}, 'nprogress', 'resize-observer-polyfill', 'element-ui']`
@@ -32,7 +34,7 @@
   - [ ] 保存 sourceMap，用于跟踪调试线上 bug
 - [ ] 应对 CPS 需求实现，代码隔离优化
 - [ ] 解决 vue.config.js 的不透明问题，改配置为 webpack 配置
-- [ ] 增加 TDD
+- [ ] 增加 TDD 示例，详见 [vue-test-utils-getting-started](https://github.com/dwdjs/vue-test-utils-getting-started) 可参考 https://vue-test-utils.vuejs.org/zh/guides/
 
 ### 页面功能扩展
 
@@ -47,6 +49,8 @@
 - [ ] 增加友好的错误页面，支持点击刷新
 - [ ] 调整登录/注册界面，弹出式调用更友好
 - [ ] 优化H5 OAuth 授权流程
+  - 之前授权跳转获取 code 都在前端实现，现改为在服务端实现（提高性能）
+  - 点击触发授权，前端只需跳转对应的 apiUrl，传入回跳地址 authCllbackUrl 即可
 - [ ] 优惠券列表、领券、选择、使用等使用场景
 - [ ] 地址列表、选择、添加、编辑等使用场景
 - [ ] 公告、通知相关使用场景
@@ -56,6 +60,10 @@
 - 优化加载体验
   - [ ] 增加 loading 占位页面
   - [ ] 增加骨架屏使用场景示例
+  - [ ] 性能问题 [关于 Violation](https://stackoverflow.com/questions/41218507/violation-long-running-javascript-task-took-xx-ms)
+- active兼容处理(即 伪类 :active 失效)
+  - 方法 1：body添加 `ontouchstart`
+  - js给 document 绑定 touchstart 或 touchend 事件 `document.addEventListener('touchstart', function(){}, false);`
 
 ## 运行
 

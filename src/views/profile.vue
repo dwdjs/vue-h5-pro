@@ -1,6 +1,13 @@
 <template>
-  <div>
-    <img class="user-poster" src="https://img.yzcdn.cn/public_files/2017/10/23/8690bb321356070e0b8c4404d087f8fd.png">
+  <div class="page-profile">
+    <div class="user-profile">
+      <div v-if="isLogin">
+        用户信息
+      </div>
+      <div v-else data-link="login" @click="goNext">
+        未登录
+      </div>
+    </div>
     <van-row class="user-links">
       <van-col span="6">
         <van-icon name="pending-payment" />待付款
@@ -39,14 +46,30 @@ export default {
     [Cell.name]: Cell,
     [CellGroup.name]: CellGroup,
   },
+
+  data() {
+    return {
+      isLogin: false,
+    }
+  },
+
+  methods: {
+    goNext(e) {
+      const { link } = e.currentTarget.dataset
+
+      this.$forward(link)
+    },
+  },
 }
 </script>
 
 <style lang="less" scoped>
 .user {
-  &-poster {
+  &-profile {
+    background: url('https://img1.haoshiqi.net/assets/hsqimg/userInfo-bg.png') no-repeat;
+    background-size: cover;
     width: 100%;
-    height: 53vw;
+    height: 30vw;
     display: block;
   }
 
