@@ -1,5 +1,5 @@
 <template>
   <div>
-    分类
+    发现
   </div>
 </template>

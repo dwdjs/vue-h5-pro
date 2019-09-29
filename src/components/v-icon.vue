@@ -25,7 +25,10 @@ export default {
   name: 'VIcon',
 
   props: {
-    prefixCls: String,
+    prefixCls: {
+      type: String,
+      default: 'icon',
+    },
     spin: Boolean,
     size: [String, Number],
     bg: String,
@@ -35,7 +38,7 @@ export default {
       type: String,
       default: 'font',
       validator(value) {
-        return ['font', 'canvas', 'custom'].includes(value)
+        return ['font', 'svg', 'canvas', 'custom'].includes(value)
       },
     },
     shape: {
@@ -52,12 +55,11 @@ export default {
 
   computed: {
     classes() {
-      const { mode, type, spin, shape, reverse } = this.$props
+      const { prefixCls, mode, type, spin, shape, reverse } = this.$props
 
-      let { prefixCls = 'icon' } = this.$props
-      prefixCls = mode ? `${prefixCls}-${mode}` : `${prefixCls}-font`
+      // 默认为 class="iconfont icon-search"
       return {
-        [`${prefixCls}`]: true,
+        [`${prefixCls}${mode}`]: true,
         [`${prefixCls}-${type}`]: !!type,
         [`${prefixCls}-${reverse}`]: reverse,
         [`is-${shape}`]: !!shape,
@@ -68,8 +70,8 @@ export default {
       const { size, color, bg } = this.$props
       return {
         fontSize: `${size / 100}vw`,
-        color: !!color,
-        backgroundColor: !!bg,
+        color: color,
+        backgroundColor: bg,
       }
     },
   },

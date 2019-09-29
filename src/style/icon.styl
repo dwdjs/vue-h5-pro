@@ -1,0 +1,51 @@
+@import './iconfont';
+
+.icon-svg {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  // 不要使用这个，有时外部盒子会有形变
+  // transform: inherit;
+}
+
+.icon-font {
+  font-size: 1em;
+  color: currentColor;
+}
+
+.icon-custom {
+  display: inline-block;
+  transform-origin: center;
+}
+.icon-custom-arrow {
+  &-top,
+  &-right,
+  &-bottom,
+  &-left {
+    // color: $rgb33;
+    &::after {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      color: inherit;
+      border-color: currentColor;
+      border-style: solid;
+      // border-width: 1px 1px 0 0;
+      transform: matrix(0.71, 0.71, -0.71, 0.71, 0, 0);
+    }
+  }
+  &-top::after {
+    border-width: 1px 0 0 1px;
+  }
+  &-right::after {
+    border-width: 1px 1px 0 0;
+  }
+  &-bottom::after {
+    border-width: 0 1px 1px 0;
+    // transform: translateY(-20%);
+  }
+  &-left::after {
+    border-width: 0 0 1px 1px;
+  }
+}

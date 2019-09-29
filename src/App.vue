@@ -75,9 +75,9 @@ export default {
       const { name } = val
       this.curTabBar = val.name
 
-      const { title } = val.meta
+      const { title, tabbar, hide_header: hideHeader } = val.meta
       this.title = title ? title.replace(/-/g, '') : ''
-      this.showHeader = val.query.hide_header !== 1
+      this.showHeader = !(hideHeader || val.query.hide_header)
 
       // TODO: 从外部进入费首页，先经过首页再进入目的页面，并处理 back 的情况
       // const blockList = tabbarPathArr;
@@ -90,7 +90,7 @@ export default {
       if (name === 'cart') {
         isShow = val.query.tabbar // tabbarPathArr.includes(oldVal.name)
       } else {
-        isShow = tabbarPathArr.includes(name)
+        isShow = tabbarPathArr.includes(name) || tabbar
       }
       this.showTabBar = isShow
       this.showBack = !isShow
@@ -99,8 +99,9 @@ export default {
 }
 </script>
 
-<style lang="less">
+<style lang="stylus">
 @import '~@/style/base';
+@import '~@/style/icon';
 
 body {
   min-width: 100vw;
@@ -108,6 +109,11 @@ body {
   font-size: 16px;
   background-color: #f8f8f8;
   -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
 }
 
 .dwd-nav-bar {
@@ -138,13 +144,16 @@ body {
 
 .page-view {
   position: relative;
-  min-height: 100vh;
+  // min-height: 100vh;
+  // height: 100vh;
   padding-bottom: 20px;
+  flex: 1;
+
+  background-color: #c6c6c6;
 }
 
 .has-nav-bar {
   > .page-view {
-    margin-bottom: -50px;
     padding-top: 50px;
     // min-height: 100vh;
     // padding-bottom: 70px;

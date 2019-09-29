@@ -1,5 +1,22 @@
 <template>
-  <div class="page-index">
+  <div class="index-first">
+    <div class="index-banner">
+      <img class="auto" src="https://placekitten.com/750/300" alt="banner">
+    </div>
+
+    <div class="category">
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+      <div class="category-item">item</div>
+    </div>
+
     <van-cell-group title="demo">
       <van-cell
         title="详情页"
@@ -45,6 +62,7 @@
 import { Col, Icon, Cell, CellGroup } from '@dwdjs/vant'
 
 export default {
+  name: 'IndexFirst',
   components: {
     [Col.name]: Col,
     [Icon.name]: Icon,
@@ -70,10 +88,28 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="stylus" scoped>
 .demo {
   &-group {
     margin-bottom: 15px;
+  }
+}
+
+.index-banner {
+  width: 100%;
+  overflow: hidden;
+}
+
+.category {
+  display: flex;
+  flex-flow: row wrap;
+
+  &-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 20%;
   }
 }
 </style>

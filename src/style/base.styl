@@ -1,4 +1,5 @@
-@import './normalize.css';
+@import '~@/style/var';
+@import './normalize';
 
 // NOTE: 注意在main.js 中引入的话，postcss的应用不是很好 如short-posscss
 
@@ -16,7 +17,11 @@
   box-sizing: border-box;
 
   // remove tap highlight color for mobile safari
-  -webkit-tap-highlight-color: transparent;
+  // 这个属性只用于iOS (iPhone和iPad)。当你点击一个链接或者通过Javascript定义的可点击元素的时候，它就会出现一个半透明的灰色背景。
+  // 要重设这个表现，你可以设置-webkit-tap-highlight-color为任何颜色。
+  // 想要禁用这个高亮，设置颜色的alpha值为0即可。
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  user-select: none;
 }
 
 *::before,
@@ -24,6 +29,25 @@
   box-sizing: border-box;
 }
 
+img,
+a,
+div {
+  // -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  // -webkit-touch-callout: none;
+  // touch-callout: none;
+  // -webkit-user-select: none;
+
+}
+
+/**
+ * 1. http://usabilitypost.com/2012/11/15/w-optimizelegibility-on-mobile-devices/
+ * 2. http://maxvoltar.com/archive/-webkit-font-smoothing
+ *    设置 smoothing 使页面上的字体抗锯齿，更清晰舒服，特别针对图标文字
+ * NOTE: http://usabilitypost.com/2012/11/05/stop-fixing-font-smoothing/
+ * 3. http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
+ *    http://jaydenseric.com/blog/css-font-smoothing-for-firefox-mac
+ * 4. http://blogs.msdn.com/b/ie_cn/archive/2012/01/17/css.aspx
+ */
 body,
 button,
 input,
@@ -33,19 +57,22 @@ textarea {
   color: inherit;
   font: inherit;
   margin: 0;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
+  // 纤细字体
+  text-rendering: optimizeLegibility;  // 1 当绘制文本时，浏览器会侧重文本的可读性（清晰度），而不是渲染速度和几何精度
+  -webkit-font-smoothing: antialiased; // 2 抗锯齿
 }
 
 html,
 body,
 #app {
-  min-height: 100vh;
+  // vh 在 ios safari 和 chrome对高度的渲染有问题，有地址栏和操作区，非满屏会出现滚动条（微信没问题）
+  // 改为 100% 后没此问题了
+  height: 100%;
 }
 
 // 如果父级 height: auto 则子级 height: 100% 不生效
-#app > .page {
-  height: 100%;
+#app > .page-view {
+  // height: 100%;
 }
 
 .absolute-full {
@@ -72,27 +99,89 @@ a {
   color: inherit;
 }
 
+img {
+  vertical-align: middle;
+}
+
+// 限制不要撑破容器
+// [img max-width: 100% 引起地图不显示图片](https://github.com/amazeui/amazeui/issues/502)
+// img {
+//   max-width: 100%;
+// }
+
+/**
+ * Fix viewport for IE10 snap mode
+ * http://timkadlec.com/2012/10/ie10-snap-mode-and-responsive-design/
+ * http://msdn.microsoft.com/en-us/library/ie/hh869615%28v=vs.85%29.aspx
+ * http://msdn.microsoft.com/zh-cn/library/ie/hh708740(v=vs.85).aspx
+ * @2014.01.20: 设置以下属性以后，windows Phone 8 上显示的字体过小，暂时注释掉
+ **/
+// @-ms-viewport {
+//   width: device-width;
+// }
+
 /*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 4px;
   height: 4px;
   background-color: transparent;
 }
 
-/*定义滚动条轨道 内阴影+圆角*/
+// 定义滚动条轨道 内阴影+圆角
 ::-webkit-scrollbar-track {
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  // border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+  border-radius: 4px;
   background-color: transparent;
-  display: none;
+  // display: none;
 }
 
-/*定义滑块 内阴影+圆角*/
+// 定义滑块 内阴影+圆角
 ::-webkit-scrollbar-thumb {
-  // border-radius: 4px;
-  // -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-  // background-color: rgba(193, 193, 193, 0.5);
-  display: none;
+  border-radius: 4px;
+  box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+  background-color: rgba(193, 193, 193, 0.5);
+  // display: none;
+}
+
+.scroll-wrapper,
+.v-scroll {
+  // 滚动不流畅，此属性可以恢复弹性滚动 http://efe.baidu.com/blog/mobile-fixed-layout
+  // 允许独立的滚动区域和触摸回弹
+  // NOTE：可能影响 Safari qq 上 header 没了
+  -webkit-overflow-scrolling: touch;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// FIXED: 修复部分手机浏览器 fixed 抖动问题（安卓 UC，360等，在地址栏存在时，滚动页面，则 fixed 定位元素会抖动），
+// http://www.chenyudong.com/archives/chrome-position-fixed-shake.html
+.v-fixed {
+  transform: translateZ(0);
+  // NOTE: fixed 布局不能有下面这个属性，会影响 fixed 正常显示
+  // transform: translate3d(0, 0, 0);
+}
+
+.clearfix {
+  clearfix();
+}
+
+.ellipsis,
+.max-line-1 {
+  textOverflow();
+}
+
+.max-line-2 {
+  maxLine(2)
+}
+
+.max-line-3 {
+  maxLine(3)
+}
+
+.link {
+  color: $color-link;
 }
 
 .fr {
@@ -183,3 +272,9 @@ a {
 .flex-items-center  { align-items: center; }
 .flex-items-end     { align-items: flex-end; }
 .flex-items-stretch { align-items: stretch; }
+
+.flex-start { align-self: flex-start; }
+.flex-end { align-self: flex-end; }
+.width-full { width: 100%; }
+img.full { width: 100%; height: 100%; }
+img.auto { width: 100%; height: auto; }

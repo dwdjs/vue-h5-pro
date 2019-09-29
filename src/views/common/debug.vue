@@ -184,7 +184,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="stylus" scoped>
 .page-debug {
   margin-top: 40px;
   padding: 16px;

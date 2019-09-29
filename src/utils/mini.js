@@ -13,4 +13,8 @@ export default {
       }
     )
   },
+  popup(type) {
+    // 弹出页面
+    console.log(type)
+  },
 }

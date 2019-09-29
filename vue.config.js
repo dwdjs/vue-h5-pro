@@ -14,7 +14,7 @@ module.exports = {
   // 直接修改 webpack 配置
   configureWebpack: config => {
     // console.log(config);
-    config.resolve.extensions.push('.css', '.less', '.md')
+    config.resolve.extensions.push('.css', '.styl', '.less', '.md')
     config.resolve.alias['assets'] = path.resolve('./src/assets')
     config.resolve.alias['@'] = path.resolve('./src')
   },

@@ -9,22 +9,33 @@ const lazyLoad =
     ? file => () => import(/* webpackChunkName: "[request]" */ `@/views/${file}`)
     : file => require(`@/views/${file}`).default
 
+// header 和 tabbar 如何控制
 const routes = [
   {
     path: '',
     name: 'index',
     alias: '/index',
-    component: lazyLoad('index'),
+    component: lazyLoad('index/index'),
     meta: { title: '首页' },
   },
   {
     name: 'sort',
-    component: lazyLoad('sort'),
-    meta: { title: '分类' },
+    component: lazyLoad('sort/index'),
+    meta: { title: '分类', hide_header: 1 },
+  },
+  {
+    name: 'sort1',
+    component: lazyLoad('sort/sort1'),
+    meta: { title: '分类-1', hide_header: 1, tabbar: 1 },
   },
   {
     name: 'fire',
     component: lazyLoad('fire'),
+    meta: { title: '发现' },
+  },
+  {
+    name: 'discover',
+    component: lazyLoad('discover'),
     meta: { title: '发现' },
   },
   {
@@ -57,13 +68,43 @@ const routes = [
     component: lazyLoad('order-commit'),
     meta: { title: '确认订单', needAuth: true },
   },
+  {
+    name: 'search',
+    component: lazyLoad('search'),
+    meta: { title: '搜索' },
+  },
+  {
+    name: 'login-help',
+    component: lazyLoad('help/login-help'),
+    meta: { title: '登录帮助' },
+  },
+  {
+    name: 'service',
+    component: lazyLoad('help/service'),
+    meta: { title: '客户服务' },
+  },
+  {
+    name: 'history',
+    component: lazyLoad('history'),
+    meta: { title: '浏览历史' },
+  },
 ]
 
 if (env.isEnv('prod')) {
   routes.unshift({
     name: 'debug',
     component: lazyLoad('common/debug'),
-    meta: { title: 'Debug 调试页面', needAuth: false },
+    meta: { title: 'Debug 调试页面' },
+  })
+  routes.unshift({
+    name: 'tab',
+    component: lazyLoad('demo/tab'),
+    meta: { title: 'Tab' },
+  })
+  routes.unshift({
+    name: 'scroll',
+    component: lazyLoad('demo/scroll'),
+    meta: { title: '滚动列表' },
   })
 }
 

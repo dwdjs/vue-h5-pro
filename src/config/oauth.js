@@ -7,17 +7,17 @@ const oAuth = {
   wechat: {
     clentId: '',
     type: 'wechat',
+    icon: 'user',
     clientName: '微信登录',
     authUrl: `${env.apiBaseUrl}${authUrl}`,
-    color: '#4cb131',
     authCallbackUrl,
   },
   alipay: {
     clentId: '',
     type: 'alipay',
+    icon: 'pay-circle-o',
     clientName: '支付宝登录',
     authUrl: `${env.apiBaseUrl}${authUrl}`,
-    color: '#0a98dc',
     authCallbackUrl,
   },
 }

@@ -112,7 +112,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="stylus" scoped>
 .pop-contact {
   height: 100%;
   background-color: #f2f2f2;

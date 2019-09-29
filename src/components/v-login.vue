@@ -36,8 +36,7 @@
 </template>
 
 <script>
-// 登录即代表您已同意 xx隐私政策
-// 点击'返回'将中断注册，确定返回
+// 手机号登录，绑定
 import { Button, Field, CellGroup } from '@dwdjs/vant'
 // import env from '@/config/env'
 // import { modelApis } from '@/api/api.config'
@@ -62,7 +61,7 @@ export default {
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="stylus" scoped>
 .input-text {
   width: 100%;
   line-height: 1;

@@ -17,6 +17,9 @@
       </van-cell>
     </van-cell-group>
 
+    <div class="detail-tags">标签</div>
+    <div class="detail-activity">满减折扣等活动信息，最多显示两行，点击展开等</div>
+
     <van-cell-group class="goods-cell-group">
       <van-cell value="进入店铺" icon="shop-o" is-link @click="sorry">
         <template slot="title">
@@ -41,10 +44,30 @@
       <van-goods-action-button type="warning" @click="sorry">
         加入购物车
       </van-goods-action-button>
-      <van-goods-action-button type="danger" @click="sorry">
+      <van-goods-action-button type="danger" @click="popSku">
         立即购买
       </van-goods-action-button>
     </van-goods-action>
+
+
+    <van-sku
+      v-model="show"
+      :sku="skuData.sku"
+      :goods="skuData.goods_info"
+      :goods-id="skuData.goods_id"
+      :hide-stock="skuData.sku.hide_stock"
+      :quota="skuData.quota"
+      :quota-used="skuData.quota_used"
+      :close-on-click-overlay="closeOnClickOverlay"
+      :message-config="messageConfig"
+      :custom-sku-validator="customSkuValidator"
+      disable-stepper-input
+      reset-stepper-on-hide
+      safe-area-inset-bottom
+      reset-selected-sku-on-hide
+      @buy-clicked="onBuyClicked"
+      @add-cart="onAddCartClicked"
+    />
   </div>
 </template>
 
@@ -61,7 +84,9 @@ import {
   GoodsAction,
   GoodsActionIcon,
   GoodsActionButton,
+  Sku,
 } from '@dwdjs/vant'
+import skuData from '@/mock/sku'
 
 export default {
   components: {
@@ -75,11 +100,23 @@ export default {
     [GoodsAction.name]: GoodsAction,
     [GoodsActionIcon.name]: GoodsActionIcon,
     [GoodsActionButton.name]: GoodsActionButton,
+    [Sku.name]: Sku,
   },
 
   data() {
+    this.skuData = skuData
     return {
+      show: false,
+      // sku: {
+      //   // 数据结构见下方文档
+      // },
+      messageConfig: {
+        // 数据结构见下方文档
+      },
+      closeOnClickOverlay: true,
+      customSkuValidator: () => '请选择xxx',
       goods: {
+        // 数据结构见下方文档
         title: '美国伽力果（约680g/3个）',
         price: 2680,
         express: '免运费',
@@ -104,11 +141,26 @@ export default {
     sorry() {
       Toast('暂无后续逻辑~')
     },
+    popSku() {
+      this.show = true
+    },
+
+    onBuyClicked(data) {
+      this.$toast('buy:' + JSON.stringify(data))
+
+      this.$forward('order-commit', {
+        id: data.goodsId,
+      })
+    },
+
+    onAddCartClicked(data) {
+      this.$toast('add cart:' + JSON.stringify(data))
+    },
   },
 }
 </script>
 
-<style lang="less" scoped>
+<style lang="stylus" scoped>
 .goods {
   padding-bottom: 50PX;
 
