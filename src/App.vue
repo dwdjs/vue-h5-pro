@@ -12,7 +12,7 @@
       @click-left="onBack"
       @click-right="onClickRight"
     />
-    <keep-alive>
+    <keep-alive :include="keepAlives" :max="10">
       <router-view class="page-view" />
     </keep-alive>
     <van-tabbar v-show="showTabBar" v-model="curTabBar" class="dwd-tab-bar">
@@ -32,6 +32,8 @@ import { NavBar, Tabbar, TabbarItem } from '@dwdjs/vant'
 const tabbarPathArr = ['index', 'sort', 'fire', 'cart', 'profile']
 
 export default {
+  name: 'App',
+
   components: {
     [NavBar.name]: NavBar,
     [Tabbar.name]: Tabbar,
@@ -44,6 +46,7 @@ export default {
       showBack: false,
       showTabBar: false,
       showHeader: false,
+      keepAlives: ['Index', 'Profile', 'Cart', 'Fire', 'Sort'],
     }
   },
   computed: {
@@ -62,6 +65,9 @@ export default {
     },
   },
   created() {
+    // this.keepAlives = [
+    //   'index'
+    // ]
     // this.watchRoute(this.$route)
   },
   methods: {

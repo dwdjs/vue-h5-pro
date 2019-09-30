@@ -55,12 +55,16 @@
 <script>
 // 简单实现，无交互
 // 选中后，右侧显示对应数据，默认滚动到顶部，如已访问，滚动到上次访问的位置
+// TODO: 如果当前组件被 keep-alive 缓存，那么无法离开当前页面仅仅会触发 deactivated，此时元素已经隐藏，无法取到滚动高度
+// 只能滚动时加事件记录位置，返回时重置位置
 import VSearch from '@/components/v-search'
 import category from '@/mock/category.json'
 
 const navList = category.data.list
 
 export default {
+  name: 'Sort',
+
   components: {
     VSearch,
   },
@@ -83,32 +87,77 @@ export default {
     // },
   },
 
+  beforeCreate() {
+    console.log('beforeCreate')
+  },
   created() {
     this.tempPos = {}
+
+    console.log(this.$options.name)
+  },
+  beforeMount() {
+    console.log('beforeMount')
+  },
+  mounted() {
+    console.log('mounted')
+  },
+  beforeUpdate() {
+    console.log('beforeUpdate')
+  },
+  updated() {
+    console.log('updated')
+  },
+  activated() {
+    this.setPos()
+    console.log('activated')
+  },
+  deactivated() {
+    this.savePos()
+    console.log('deactivated')
+  },
+  beforeDestroy() {
+    console.log('beforeDestroy')
+  },
+  destroyed() {
+    console.log('destroyed')
+  },
+  errorCaptured() {
+    console.log('errorCaptured')
   },
 
   methods: {
-    goNav(e) {
-      const { index } = e.target.dataset
-      const { scrollBehavior } = this
-
-      const target = this.$refs.wrapper
-      let posTop = 0
-      // 先记录当前滚动位置，之后跳转到新选中项应在位置
-      if (scrollBehavior) {
+    savePos() {
+      if (this.scrollBehavior) {
+        const target = this.$refs.wrapper
         const preData = this.navList[this.current]
-        const curData = this.navList[index]
-
         this.tempPos[preData.id] = target.scrollTop
+      }
+      console.log(this.tempPos)
+    },
+
+    setPos() {
+      let posTop = 0
+      const target = this.$refs.wrapper
+
+      if (this.scrollBehavior) {
+        const curData = this.navList[this.current]
         posTop = this.tempPos[curData.id] || 0
       }
+      this.$nextTick(() => {
+        target.scrollTo(0, posTop)
+      })
+    },
+
+    goNav(e) {
+      const { index } = e.target.dataset
+
+      // 先记录当前滚动位置，之后跳转到新选中项应在位置
+      this.savePos()
 
       this.current = index
       this.contentList = this.navList[index].subCategories
 
-      this.$nextTick(() => {
-        target.scrollTo(0, posTop)
-      })
+      this.setPos()
     },
     goNext(e) {
       const { index, link } = e.currentTarget.dataset

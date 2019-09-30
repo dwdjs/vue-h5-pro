@@ -18,13 +18,13 @@ const routes = [
     component: lazyLoad('index/index'),
     meta: { title: '首页' },
   },
+  // {
+  //   name: 'sort',
+  //   component: lazyLoad('sort/index'),
+  //   meta: { title: '分类', hide_header: 1 },
+  // },
   {
     name: 'sort',
-    component: lazyLoad('sort/index'),
-    meta: { title: '分类', hide_header: 1 },
-  },
-  {
-    name: 'sort1',
     component: lazyLoad('sort/sort1'),
     meta: { title: '分类-1', hide_header: 1, tabbar: 1 },
   },
@@ -124,13 +124,19 @@ routes.forEach(route => {
 const router = new Router({
   mode: env.routerMode,
   base: env.routerBase,
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (savedPosition) {
-  //     return savedPosition;
-  //   } else {
-  //     return { x: 0, y: 0 };
-  //   }
-  // },
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      return { x: 0, y: 0 }
+      // 如果想要模拟滚动到锚点的行为
+      // if (to.hash) {
+      //   return {
+      //     selector: to.hash,
+      //   }
+      // }
+    }
+  },
   routes,
 })
 

@@ -51,6 +51,8 @@ import VIcon from '@/components/v-icon'
 import { Search } from '@dwdjs/vant'
 
 export default {
+  name: 'Search',
+
   components: {
     [Search.name]: Search,
     [VIcon.name]: VIcon,

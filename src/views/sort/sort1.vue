@@ -75,6 +75,8 @@ import category from '@/mock/category.json'
 const navList = category.data.list
 
 export default {
+  name: 'Sort',
+
   components: {
     VSearch,
   },
@@ -85,6 +87,7 @@ export default {
       navList,
       banner: 'https://placekitten.com/600/200',
       padBottom: 0,
+      scrollBehavior: true,
     }
   },
 
@@ -105,7 +108,7 @@ export default {
       const wrapperHeight = Math.round(wrapper.getBoundingClientRect().height)
       const tempArr = Object.keys(rest)
       const restLastIndex = tempArr.length - 1
-      this.pos = tempArr.map((key, index) => {
+      this.posArr = tempArr.map((key, index) => {
         const el = this.$refs[key]
         const elRect = el[0] && el[0].getBoundingClientRect()
         if (index === restLastIndex) {
@@ -124,6 +127,7 @@ export default {
   },
 
   activated() {
+    this.setPos()
     this.handler(true)
   },
 
@@ -132,13 +136,19 @@ export default {
   },
 
   methods: {
+    setPos() {
+      let posTop = this.tempPos || 0
+      this.$nextTick(() => {
+        this.scroller.scrollTo(0, posTop)
+      })
+    },
     goNav(e) {
       const { index, id } = e.target.dataset
 
       this.current = index
       const target = this.$refs[id]
 
-      // BUG: 移动端浏览器把 search-top 移出屏幕之外了，微信好的
+      // BUG: 移动端浏览器 scrollIntoView 把 search-top 移出屏幕之外了，微信好的
       this.handler(false) // 选择定位锚点滚动时不必监听(会多次绑定)
       target && target[0].scrollIntoView({
         block: 'start',
@@ -151,14 +161,15 @@ export default {
     goNext(e) {
       const { index, link } = e.currentTarget.dataset
 
+      this.$forward('detail', { index })
       console.log(index, link)
     },
     onScroll(e) {
       // 侦测滚动位置 是否在某分类区域内
       // 创建时先存储各位置，判断在哪个区间
-      const pos = getScrollTop(this.scroller)
-      this.current = posIndex(this.pos, pos)
-      console.log(pos, this.current)
+      this.tempPos = getScrollTop(this.scroller)
+      this.current = posIndex(this.posArr, this.tempPos)
+      // console.log(this.tempPos, this.current)
     },
     handler(bind) {
       if (this.binded !== bind) {

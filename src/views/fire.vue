@@ -52,6 +52,8 @@
 import skuList from '@/mock/sku-list'
 
 export default {
+  name: 'Fire',
+
   filters: {
     price(value) {
       return (value / 100).toFixed(2)
@@ -76,6 +78,10 @@ export default {
         },
       }
     },
+  },
+
+  created() {
+    console.log(this.$options.name)
   },
 
   methods: {

@@ -21,6 +21,8 @@ import VLogin from '@/components/v-login'
 import VThirdLogin from '@/components/v-third-login'
 
 export default {
+  name: 'Login',
+
   components: {
     [VLogin.name]: VLogin,
     [VThirdLogin.name]: VThirdLogin,

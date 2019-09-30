@@ -51,6 +51,8 @@
 import { Row, Col, Icon, Cell, CellGroup } from '@dwdjs/vant'
 
 export default {
+  name: 'Profile',
+
   components: {
     [Row.name]: Row,
     [Col.name]: Col,

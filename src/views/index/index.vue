@@ -19,6 +19,8 @@ import VTabItem from '@/components/v-tab/tab-item'
 import IndexFirst from './first'
 
 export default {
+  name: 'Index',
+
   components: {
     [IndexFirst.name]: IndexFirst,
     [VTab.name]: VTab,
@@ -29,6 +31,10 @@ export default {
     return {
       tabs: [],
     }
+  },
+
+  created() {
+    console.log(this.$options.name)
   },
 }
 </script>

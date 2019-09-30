@@ -16,6 +16,8 @@
 
 <script>
 export default {
+  name: 'Address',
+
   data() {
     return {
       areaList,

@@ -31,6 +31,8 @@
 import { Checkbox, CheckboxGroup, Card, SubmitBar, Toast } from '@dwdjs/vant'
 
 export default {
+  name: 'Cart',
+
   components: {
     [Card.name]: Card,
     [Checkbox.name]: Checkbox,
