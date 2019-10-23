@@ -81,7 +81,7 @@ export default {
       const { name } = val
       this.curTabBar = val.name
 
-      const { title, tabbar, hide_header: hideHeader } = val.meta
+      const { title, tabbar, hideHeader } = val.meta
       this.title = title ? title.replace(/-/g, '') : ''
       this.showHeader = !(hideHeader || val.query.hide_header)
 
@@ -110,11 +110,11 @@ export default {
 @import '~@/style/icon';
 
 body {
-  min-width: 100vw;
+  width: 100vw;
   overflow-x: hidden;
   font-size: 16px;
+  color: #666;
   background-color: #f8f8f8;
-  -webkit-font-smoothing: antialiased;
 }
 
 #app {
@@ -135,16 +135,10 @@ body {
     font-size: 14px;
     text-transform: capitalize;
   }
-
-  // .van-icon {
-  //   color: @gray-dark;
-  //   font-size: 24px;
-  //   cursor: pointer;
-  // }
 }
 
 .dwd-tab-bar {
-  // TODO: 默认 tabbar 组件内联添加了 index: 1，是否应该移除
+  /* TODO: 默认 tabbar 组件内联添加了 index: 1，是否应该移除 */
   z-index: 600 !important;
 }
 

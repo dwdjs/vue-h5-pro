@@ -26,7 +26,7 @@ const routes = [
   {
     name: 'sort',
     component: lazyLoad('sort/sort1'),
-    meta: { title: '分类-1', hide_header: 1, tabbar: 1 },
+    meta: { title: '分类-1', hideHeader: 1, tabbar: 1 },
   },
   {
     name: 'fire',
@@ -51,7 +51,7 @@ const routes = [
   {
     name: 'detail',
     component: lazyLoad('detail'),
-    meta: { title: '商品详情' },
+    meta: { title: '商品详情', hideHeader: true },
   },
   {
     name: 'login',

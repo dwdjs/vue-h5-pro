@@ -1,36 +1,55 @@
 <template>
-  <div class="goods">
-    <van-swipe class="goods-swipe" :autoplay="3000">
-      <van-swipe-item v-for="thumb in goods.thumb" :key="thumb">
+  <div class="page-detail detail">
+    <div class="detail-header">
+      <div class="back" @click="$back">></div>
+    </div>
+
+    <van-swipe class="detail-swipe" :autoplay="3000">
+      <van-swipe-item
+        v-for="(thumb, index) in detail.thumb"
+        :key="thumb"
+        @click.native="$preview(detail.thumb, index)"
+      >
         <img :src="thumb">
       </van-swipe-item>
     </van-swipe>
 
     <van-cell-group>
       <van-cell>
-        <div class="goods-title">{{ goods.title }}</div>
-        <div class="goods-price">{{ formatPrice(goods.price) }}</div>
+        <div class="price-wrap">
+          <span class="price-desc" alt="描述">{{ detail.priceDesc }}</span>
+          <span class="price detail-price B" v-html="formatPrice(detail.price)" />
+          <span class="del-price">{{ detail.marketPrice | price }}</span>
+          <!-- <span class="price-fresh"></span>
+          <span class="price-tags"></span>
+          <span class="price-help"></span>
+          <span class="vip-price"></span>
+          <span class="newer-price"></span> -->
+          <!-- <span class="favour">收藏</span>
+          <span class="cheaper-info">降价提醒</span> -->
+        </div>
+        <div class="detail-title">{{ detail.title }}</div>
       </van-cell>
-      <van-cell class="goods-express">
-        <van-col span="10">运费：{{ goods.express }}</van-col>
-        <van-col span="14">剩余：{{ goods.remain }}</van-col>
+      <van-cell class="detail-express">
+        <van-col span="10">运费：{{ detail.express }}</van-col>
+        <van-col span="14">剩余：{{ detail.remain }}</van-col>
       </van-cell>
     </van-cell-group>
 
     <div class="detail-tags">标签</div>
     <div class="detail-activity">满减折扣等活动信息，最多显示两行，点击展开等</div>
 
-    <van-cell-group class="goods-cell-group">
+    <van-cell-group class="detail-cell-group">
       <van-cell value="进入店铺" icon="shop-o" is-link @click="sorry">
         <template slot="title">
           <span class="van-cell-text">有赞的店</span>
-          <van-tag class="goods-tag" type="danger">官方</van-tag>
+          <van-tag class="detail-tag" type="danger">官方</van-tag>
         </template>
       </van-cell>
       <van-cell title="线下门店" icon="location-o" is-link @click="sorry" />
     </van-cell-group>
 
-    <van-cell-group class="goods-cell-group">
+    <van-cell-group class="detail-cell-group">
       <van-cell title="查看商品详情" is-link @click="sorry" />
     </van-cell-group>
 
@@ -72,6 +91,16 @@
 </template>
 
 <script>
+// 顶部图片位
+//  - 点击支持全屏预览(白色全遮罩+来路动画)
+//  - 支持视频播放（原位置），滚动后缩小悬浮
+//  - 支持双倍滚动隐藏，更快展示产品介绍 参考 JD
+// 左右间距 10px
+// 支持优惠提示
+// 支持多 sku 选择
+// 支持配送地址选择
+// 支持评价展示、店铺展示、精品推荐/排行榜、详情、推荐（同店好货/看了又看）
+// 滚动后并触发header吸顶 tab（商品/评价/详情/推荐），支持定位跳转
 import {
   Tag,
   Col,
@@ -105,6 +134,12 @@ export default {
     [Sku.name]: Sku,
   },
 
+  filters: {
+    price(v) {
+      return (v / 100).toFixed(2)
+    },
+  },
+
   data() {
     this.skuData = skuData
     return {
@@ -117,10 +152,12 @@ export default {
       },
       closeOnClickOverlay: true,
       customSkuValidator: () => '请选择xxx',
-      goods: {
+      detail: {
         // 数据结构见下方文档
         title: '美国伽力果（约680g/3个）',
+        priceDesc: '开学季',
         price: 2680,
+        marketPrice: 4680,
         express: '免运费',
         remain: 19,
         thumb: [
@@ -133,7 +170,9 @@ export default {
 
   methods: {
     formatPrice() {
-      return '¥' + (this.goods.price / 100).toFixed(2)
+      // 价格三部分，
+      const temp = (this.detail.price / 100).toFixed(2).split('.')
+      return `¥<em>${temp[0]}</em>.${temp[1]}`
     },
 
     onClickCart() {
@@ -163,8 +202,27 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-.goods {
+.page-detail {
+  background: #f2f2f2;
+}
+
+.detail {
   padding-bottom: 50PX;
+
+  &-header {
+    position: fixed;
+    z-index: 10;
+  }
+
+  .back {
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    background: #fff;
+    align-items: center;
+    justify-content: center;
+  }
 
   &-swipe {
     img {
@@ -177,8 +235,30 @@ export default {
     font-size: 16px;
   }
 
+  .price-wrap {
+    padding-top: 6px;
+    padding-bottom: 0;
+    position: relative;
+    font-size: 12px;
+  }
+
+  .price-desc + .price {
+    margin-left: 4px;
+  }
+
   &-price {
-    color: #f44;
+    color: #e4393c;
+    font-size: 16px;
+    >>> > em {
+      font-size: 24px;
+      font-style: normal;
+    }
+  }
+
+  .del-price {
+    margin-left: 4px;
+    text-decoration: line-through;
+    color: #999;
   }
 
   &-express {

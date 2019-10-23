@@ -10,6 +10,9 @@ import env from '@/config/env'
 
 import mini from '@/utils/mini'
 
+import flexible from '@dwdjs/rem-flexible'
+flexible(375, 100)
+
 Object.keys(mini).forEach(key => {
   Vue.prototype[`$${key}`] = mini[key]
 })

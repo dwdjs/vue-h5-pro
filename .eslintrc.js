@@ -35,7 +35,9 @@ module.exports = {
   ],
   rules: {
     // https://yepbug.com/2018/08/28/what-is-the-benefit-of-prefer-default-export/
+    // https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/README.md
     'import/prefer-default-export': 'off', // 输出只有一个变量时使用 export default
+    'vue/name-property-casing': ['error', 'kebab-case'], // 'PascalCase' |'kebab-case'
     'vue/max-attributes-per-line': ['error', {
       'singleline': 4,
       'multiline': {
@@ -44,6 +46,9 @@ module.exports = {
       },
     }],
     'vue/multiline-html-element-content-newline': 'off',
+    'vue/no-v-html': 'off',
+    'vue/no-template-shadow': 'off', // temp
+    'vue/order-in-components': 'off', // temp
     'vue/require-default-prop': 'off',
     // 'vue/no-unused-components': '1',
     'vue/singleline-html-element-content-newline': 'off',
@@ -116,16 +121,17 @@ module.exports = {
         allowTaggedTemplates: true,
       },
     ],
-    'no-unused-vars': [
-      'error',
-      {
-        vars: 'all',
-        // args: 'after-used',
-        args: 'none',
-        caughtErrors: 'none',
-        ignoreRestSiblings: true,
-      },
-    ],
+    'no-unused-vars': 'off',
+    // 'no-unused-vars': [
+    //   'error',
+    //   {
+    //     vars: 'all',
+    //     // args: 'after-used',
+    //     args: 'none',
+    //     caughtErrors: 'none',
+    //     ignoreRestSiblings: true,
+    //   },
+    // ],
     'no-use-before-define': 'off',
     'no-useless-escape': 'off',
     'prefer-template': 'off',

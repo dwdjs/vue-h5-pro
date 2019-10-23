@@ -64,6 +64,8 @@
 // BUG: 移动端浏览器点击做锚点定位时，把 top-search 移出可视区域了（微信没问题）
 // - 最后一个分类填充空白，可点选定位
 // - 优化索引位置计算，理想应该二分法
+// TODO: 目前不支持左侧菜单超出一屏时，自使用选中项滚动到显示区域
+// 交互增强，可使用 css3 全模拟滚动，自适应选择项滚动到显示区域 效果可参考饿了么点菜
 import { debounce } from 'lodash'
 import { on, off } from '@/utils/event'
 import { getScrollTop } from '@/utils/dom'
