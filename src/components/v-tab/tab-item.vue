@@ -8,7 +8,7 @@
 import findParent from './findParent'
 
 export default {
-  name: 'VTabItem',
+  name: 'v-tab-item',
 
   mixins: [findParent],
 

@@ -1,6 +1,6 @@
 <script>
 export default {
-  name: 'VVirtualList',
+  name: 'v-virtual-list',
   props: {
     item: {
       type: Object,

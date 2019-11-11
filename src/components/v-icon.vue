@@ -22,7 +22,7 @@
 
 // 不在支持 svg
 export default {
-  name: 'VIcon',
+  name: 'v-icon',
 
   props: {
     prefixCls: {

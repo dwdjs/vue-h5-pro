@@ -7,6 +7,12 @@ const path = require('path')
 const __DEV__ = process.env.NODE_ENV === 'development'
 const __PROD__ = process.env.NODE_ENV === 'production'
 
+// path.join(__dirname, 'src') 等效 path.resolve('./src')
+function resolve(dir) {
+  return path.join(__dirname, dir)
+  // return path.resolve(dir)
+}
+
 module.exports = {
   // outputDir: 'dist',
   publicPath: __DEV__ ? `./` : './',
@@ -15,11 +21,13 @@ module.exports = {
   configureWebpack: config => {
     // console.log(config);
     config.resolve.extensions.push('.css', '.styl', '.less', '.md')
-    config.resolve.alias['assets'] = path.resolve('./src/assets')
-    config.resolve.alias['@'] = path.resolve('./src')
   },
   // 将修改 merge 到 webpack 配置中
   chainWebpack: config => {
+    config.resolve.alias
+      .set('@', resolve('src'))
+      .set('assets', resolve('src/assets'))
+      .set('components', resolve('src/components'))
     // if (!__DEV__) {}
     /**
       第三方库提取（分四层）
@@ -73,4 +81,22 @@ module.exports = {
   lintOnSave: !__PROD__,
   runtimeCompiler: false,
   crossorigin: 'anonymous',
+  // 代理设置
+  devServer: {
+    overlay: {
+      warnings: true,
+      errors: true,
+    },
+    port: 8086,
+    proxy: {
+      '/api': {
+        target: 'http://127.0.0.1:8086/',
+        changeOrigin: true,
+        ws: true,
+        pathRewrite: {
+          '^/api': '',
+        },
+      },
+    },
+  },
 }

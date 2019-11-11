@@ -9,7 +9,7 @@ import oAuth from '@/config/oauth'
 // 然后前端点击授权跳转到接口地址，触发授权流程，最终回跳到 authCallbackUrl
 
 export default {
-  name: 'VThirdLogin',
+  name: 'v-third-login',
   components: {
     [Button.name]: Button,
     [VIcon.name]: VIcon,

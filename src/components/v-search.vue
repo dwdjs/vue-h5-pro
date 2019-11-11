@@ -12,7 +12,7 @@
 // 聚焦或有内容时显示搜索按钮，有内容时出现 clear 按钮
 // 搜索页引入 search-bar 组件实现
 export default {
-  name: 'VSearch',
+  name: 'v-search',
 
   props: {
     bg: String,

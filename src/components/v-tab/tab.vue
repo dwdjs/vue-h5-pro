@@ -57,7 +57,7 @@ import swipe from './swipe'
 import translateUtil from './transition'
 
 export default {
-  name: 'VTab',
+  name: 'v-tab',
 
   components: {
     [VTabItem.name]: VTabItem,

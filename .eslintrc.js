@@ -27,16 +27,17 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["**/__tests__/*.{j,t}s?(x)"],
+      files: ['**/__tests__/*.{j,t}s?(x)'],
       env: {
-        jest: true
-      }
-    }
+        jest: true,
+      },
+    },
   ],
   rules: {
     // https://yepbug.com/2018/08/28/what-is-the-benefit-of-prefer-default-export/
     // https://github.com/vuejs/eslint-plugin-vue/blob/master/docs/rules/README.md
     'import/prefer-default-export': 'off', // 输出只有一个变量时使用 export default
+    // 因为 mac 系统默认不区分大小写, 所以建议使用全小写, 包含文件名 文件夹名 组件名(html 特性也不区分大小写)
     'vue/name-property-casing': ['error', 'kebab-case'], // 'PascalCase' |'kebab-case'
     'vue/max-attributes-per-line': ['error', {
       'singleline': 4,

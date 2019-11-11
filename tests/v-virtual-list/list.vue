@@ -51,7 +51,7 @@ import VVirtualListItem from './list-item'
 
 const name = ''
 export default {
-  name: 'VVirtualList',
+  name: 'v-virtual-list',
   components: {
     [VVirtualListItem.name]: VVirtualListItem,
   },

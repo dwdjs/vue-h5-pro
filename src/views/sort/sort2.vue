@@ -76,7 +76,7 @@ import category from '@/mock/category.json'
 const navList = category.data.list
 
 export default {
-  name: 'Sort',
+  name: 'sort',
 
   components: {
     VSearch,

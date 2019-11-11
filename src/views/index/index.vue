@@ -19,7 +19,7 @@ import VTabItem from '@/components/v-tab/tab-item'
 import IndexFirst from './first'
 
 export default {
-  name: 'Index',
+  name: 'index',
 
   components: {
     [IndexFirst.name]: IndexFirst,

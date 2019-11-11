@@ -8,6 +8,6 @@
 // 浏览历史
 // 可编辑删除或清空
 export default {
-  name: 'History',
+  name: 'history',
 }
 </script>

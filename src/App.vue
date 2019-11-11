@@ -32,7 +32,7 @@ import { NavBar, Tabbar, TabbarItem } from '@dwdjs/vant'
 const tabbarPathArr = ['index', 'sort', 'fire', 'cart', 'profile']
 
 export default {
-  name: 'App',
+  name: 'app',
 
   components: {
     [NavBar.name]: NavBar,

@@ -62,7 +62,7 @@
 import { Col, Icon, Cell, CellGroup } from '@dwdjs/vant'
 
 export default {
-  name: 'IndexFirst',
+  name: 'index-first',
   components: {
     [Col.name]: Col,
     [Icon.name]: Icon,

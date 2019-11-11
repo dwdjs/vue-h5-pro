@@ -118,7 +118,7 @@ import {
 import skuData from '@/mock/sku'
 
 export default {
-  name: 'Detail',
+  name: 'detail',
 
   components: {
     [Tag.name]: Tag,

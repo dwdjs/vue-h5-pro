@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: 'Address',
+  name: 'v-address',
 
   data() {
     return {

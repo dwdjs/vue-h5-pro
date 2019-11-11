@@ -44,7 +44,7 @@ import { Button, Field, CellGroup } from '@dwdjs/vant'
 // const oauthUrl = ''
 
 export default {
-  name: 'VLogin',
+  name: 'v-login',
 
   components: {
     [Button.name]: Button,

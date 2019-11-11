@@ -52,7 +52,7 @@
 import skuList from '@/mock/sku-list'
 
 export default {
-  name: 'Fire',
+  name: 'fire',
 
   filters: {
     price(value) {
