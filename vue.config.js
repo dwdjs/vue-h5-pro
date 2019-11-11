@@ -1,5 +1,9 @@
 const path = require('path')
 
+// 可视化 webpack 构建
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
+  .BundleAnalyzerPlugin
+
 // const qnConfig = {
 //   domain: 'https://img.haoshiqi.net',
 // }
@@ -21,9 +25,17 @@ module.exports = {
   configureWebpack: config => {
     // console.log(config);
     config.resolve.extensions.push('.css', '.styl', '.less', '.md')
+
+    if (__PROD__) {
+      config.plugins = [
+        ...config.plugins,
+        new BundleAnalyzerPlugin(),
+      ]
+    }
   },
   // 将修改 merge 到 webpack 配置中
   chainWebpack: config => {
+    // 别名 alias
     config.resolve.alias
       .set('@', resolve('src'))
       .set('assets', resolve('src/assets'))
@@ -42,22 +54,22 @@ module.exports = {
     // 移除 prefetch 插件
     config.plugins.delete('prefetch')
     config.optimization.splitChunks({
-      chunks: 'all',
-      minSize: 60000, // byte, 30kb
-      maxSize: 0,
-      minChunks: 1,
-      maxAsyncRequests: 5,
-      maxInitialRequests: 3,
-      automaticNameDelimiter: '~',
-      automaticNameMaxLength: 30,
+      // chunks: 'all', // 这些都使用默认
+      // minSize: 60000, // byte, 30kb
+      // maxSize: 0,
+      // minChunks: 1,
+      // maxAsyncRequests: 5,
+      // maxInitialRequests: 3,
+      // automaticNameDelimiter: '~',
+      // automaticNameMaxLength: 30,
       cacheGroups: {
-        // 抽取第三方模块
-        libs: {
-          name: `chunk-lib`,
-          test: /[\\/]node_modules[\\/](vue|vuex|vue-router|axios)[\\/]/,
-          priority: 0,
-          chunks: 'initial',
-        },
+        // 抽取第三方模块, 使用 dll 替代: npm run dll, 如果要可视化分析, 可打开此配置查看输出
+        // libs: {
+        //   name: `chunk-lib`,
+        //   test: /[\\/]node_modules[\\/](vue|vue-router|vuex|axios)[\\/]/,
+        //   priority: 0,
+        //   chunks: 'initial',
+        // },
         vendors: {
           name: `chunk-vendors`,
           test: /[\\/]node_modules[\\/]/,
@@ -73,6 +85,16 @@ module.exports = {
         },
       },
     })
+  },
+  // dll 方案, 使用 vue-cli-plugin-dll
+  pluginOptions: {
+    dll: {
+      entry: ['vue', 'vue-router', 'vuex', 'axios'],
+      output: path.join(__dirname, './public/dll'),
+      // 只在生产环境加入 webpack.DllReferencePlugin 插件
+      open: __PROD__,
+      inject: true,
+    },
   },
   css: {
     sourceMap: !__PROD__,
