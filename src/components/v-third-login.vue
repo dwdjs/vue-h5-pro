@@ -62,7 +62,7 @@ export default {
           class={ [`oauth-btn`, `oauth-${curData.type}`] }
           onClick={this.goOauth.bind(this, curData)}
         >
-          <v-icon class="oauth-icon" type={curData.icon} />
+          <v-icon class="oauth-icon" type={ curData.icon } />
           <span class="oauth-text">{ curData.clientName }</span>
         </div>
       )

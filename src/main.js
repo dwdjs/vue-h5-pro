@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { loadJs } from '@dwdjs/utils'
 import App from './App'
-import router from '@/router/'
+import router from '@/router'
 
 import '@/registerServiceWorker'
 import '@/permission'
@@ -10,7 +10,7 @@ import env from '@/config/env'
 
 import mini from '@/utils/mini'
 
-import flexible from '@dwdjs/rem-flexible'
+import flexible from '@dwdjs/rem'
 flexible(375, 100)
 
 Object.keys(mini).forEach(key => {

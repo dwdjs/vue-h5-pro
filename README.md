@@ -44,7 +44,7 @@ UI设计仿 JD
   - [x] 添加 babel 插件，开发环境支持 console.log，生产包自动清除
   - [x] Code Splitting 拆分代码块
   - [x] 处理第三方独立模块的按需引用问题
-  - [ ] 独立稳定跨端包抽取 dll，能提高缓存及跨端复用，也能提升编译速度
+  - [x] 独立稳定跨端包抽取 dll，能提高缓存及跨端复用，也能提升编译速度
     - [ ] vue-h5-pro: `['vue/dist/vue.runtime.esm.js', 'vue-router', 'vuex', 'axios', 'register-service-worker', 'qs']`
     - [ ] vue-admin-pro: `[...${vueH5Pro}, 'nprogress', 'resize-observer-polyfill', 'element-ui']`
 - [ ] 封装 axios API 请求，让使用更便捷

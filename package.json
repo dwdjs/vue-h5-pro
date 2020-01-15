@@ -18,7 +18,7 @@
     "deployOnly": "gh-pages -d dist --message $(git symbolic-ref --short -q HEAD)-$(git rev-parse --short HEAD)"
   },
   "dependencies": {
-    "@dwdjs/utils": "1.0.0",
+    "@dwdjs/utils": "1.0.3",
     "@dwdjs/vant": "2.1.10",
     "axios": "0.19.0",
     "vue": "2.6.10",
