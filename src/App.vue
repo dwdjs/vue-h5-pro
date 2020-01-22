@@ -5,12 +5,12 @@
   >
     <van-nav-bar
       v-show="showHeader"
-      class="dwd-nav-bar van-hairline--bottom"
       :title="title"
       :left-arrow="showBack"
       :border="false"
       @click-left="onBack"
       @click-right="onClickRight"
+      class="dwd-nav-bar van-hairline--bottom"
     />
     <keep-alive :include="keepAlives" :max="10">
       <router-view class="page-view" />

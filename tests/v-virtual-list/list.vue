@@ -19,19 +19,19 @@
     </slot>
     <div
       ref="wrapper"
-      class="virtual-list-wrapper"
       :style="wrapperStyle"
       @scroll.passive="handleScroll"
+      class="virtual-list-wrapper"
     >
-      <div ref="scroller" class="virtual-list-scroller" :style="scrollerStyle">
-        <slot name="content" :items="pool">
+      <div ref="scroller" :style="scrollerStyle" class="virtual-list-scroller">
+        <slot :items="pool" name="content">
           <v-virtual-list-item
             v-for="({ data, $top }, index) in pool"
             :key="index + 1"
-            class="virtual-list-item"
             :tag="itemTag"
             :item="data"
             :style="{ transform: `translateY(${$top}px)`}"
+            class="virtual-list-item"
           >
             <slot :data="data" />
           </v-virtual-list-item>

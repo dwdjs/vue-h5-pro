@@ -7,7 +7,7 @@
       </article>
     </div>
 
-    <div class="help-tip">没找到相关问题？点此<span class="link" @click="goNext">联系客服</span></div>
+    <div class="help-tip">没找到相关问题？点此<span @click="goNext" class="link">联系客服</span></div>
   </div>
 </template>
 

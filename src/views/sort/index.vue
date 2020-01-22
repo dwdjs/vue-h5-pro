@@ -5,7 +5,7 @@
     </div>
     <div class="sort-wrapper flex">
       <div class="sort-nav v-scroll">
-        <div class="scroll-wrapper" @click="goNav($event)">
+        <div @click="goNav($event)" class="scroll-wrapper">
           <div
             v-for="(item, index) in navList"
             :key="item.id"
@@ -18,7 +18,7 @@
       <div ref="wrapper" class="sort-content v-scroll">
         <div class="scroll-wrapper">
           <div class="sort-banner">
-            <img class="auto" :src="banner" alt="banner">
+            <img :src="banner" class="auto" alt="banner">
           </div>
           <section class="sort-item-group">
             <div
@@ -28,7 +28,7 @@
               class="sort-item"
             >
               <div class="sort-sub-group-header">
-                <div class="title" :data-index="`${current}.${idx1}`" data-link="xxx" @click="goNext($event)">{{ sub.name }}</div>
+                <div :data-index="`${current}.${idx1}`" @click="goNext($event)" class="title" data-link="xxx">{{ sub.name }}</div>
                 <div v-if="sub.more" class="more">{{ sub.more }}</div>
               </div>
               <div class="sort-sub-group">
@@ -36,9 +36,9 @@
                   v-for="(it, idx2) in sub.subCategories"
                   :key="it.id"
                   :data-index="`${current}.${idx1}.${idx2}`"
+                  @click="goNext($event)"
                   data-link="search-result"
                   class="sort-sub"
-                  @click="goNext($event)"
                 >
                   <img :src="it.thumbnail" alt="it.name" class="sort-sub-img">
                   <p class="sort-sub-text">{{ it.name }}</p>

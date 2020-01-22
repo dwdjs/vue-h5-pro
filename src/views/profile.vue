@@ -4,7 +4,7 @@
       <div v-if="isLogin">
         用户信息
       </div>
-      <div v-else data-link="login" @click="goNext">
+      <div v-else @click="goNext" data-link="login">
         未登录
       </div>
     </div>

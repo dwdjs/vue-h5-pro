@@ -1,16 +1,16 @@
 <template>
-  <div class="v-tab" :class="[`v-tab--${type}`]">
+  <div :class="[`v-tab--${type}`]" class="v-tab">
     <div v-if="type === 'line' && tabs.length > tabsMax" class="v-tab__nav-wrap">
       <div ref="swipe" class="v-tab__swipe">
         <div class="v-tab__nav v-tab__nav--line">
-          <div class="v-tab__nav-bar" :style="navBarStyle" />
+          <div :style="navBarStyle" class="v-tab__nav-bar" />
           <div
+            ref="tabkey"
             v-for="(tab, index) in tabs"
             :key="index"
-            ref="tabkey"
-            class="v-tab v-hairline"
             :class="{ 'v-tab--active': index === curActive }"
             @click="handleTabClick(index)"
+            class="v-tab v-hairline"
           >
             {{ tab.title }}
           </div>
@@ -19,17 +19,17 @@
     </div>
     <div
       v-else
-      class="v-tab__nav"
       :class="[`v-tab__nav--${type}`]"
+      class="v-tab__nav"
     >
-      <div v-if="type === 'line'" class="v-tab__nav-bar" :style="navBarStyle" />
+      <div v-if="type === 'line'" :style="navBarStyle" class="v-tab__nav-bar" />
       <div
+        ref="tabkey"
         v-for="(tab, index) in tabs"
         :key="index"
-        ref="tabkey"
-        class="v-tab v-hairline"
         :class="{ 'v-tab--active': index === curActive }"
         @click="handleTabClick(index)"
+        class="v-tab v-hairline"
       >
         {{ tab.title }}
       </div>

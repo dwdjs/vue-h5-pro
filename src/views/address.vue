@@ -2,14 +2,14 @@
   <div class="page-address">
     <van-address-edit
       :area-list="areaList"
-      show-postal
-      show-delete
-      show-set-default
-      show-search-result
       :search-result="searchResult"
       @save="onSave"
       @delete="onDelete"
       @change-detail="onChangeDetail"
+      show-postal
+      show-delete
+      show-set-default
+      show-search-result
     />
   </div>
 </template>

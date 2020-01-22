@@ -18,11 +18,11 @@
       </van-checkbox>
     </van-checkbox-group>
     <van-submit-bar
-      class="fix-bottom-fixed"
       :price="totalPrice"
       :disabled="!checkedGoods.length"
       :button-text="submitBarText"
       @submit="onSubmit"
+      class="fix-bottom-fixed"
     />
   </div>
 </template>

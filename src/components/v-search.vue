@@ -1,6 +1,6 @@
 <template>
-  <div class="search-entry" :style="styles">
-    <div class="search-fake" @click="goNext">
+  <div :style="styles" class="search-entry">
+    <div @click="goNext" class="search-fake">
       <div class="input-fake">focus jump</div>
       <button>search</button>
     </div>

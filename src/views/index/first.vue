@@ -19,40 +19,40 @@
 
     <van-cell-group title="demo">
       <van-cell
+        @click.native="goNext"
         title="详情页"
         data-link="detail"
         is-link
-        @click.native="goNext"
       />
       <van-cell
+        @click.native="goNext"
         title="购物车"
         data-link="cart"
         is-link
-        @click.native="goNext"
       />
       <van-cell
+        @click.native="goNext"
         title="个人中心"
         data-link="profile"
         is-link
-        @click.native="goNext"
       />
       <van-cell
+        @click.native="goNext"
         title="详情页"
         data-link="detail"
         is-link
-        @click.native="goNext"
       />
       <van-cell
+        @click.native="goNext"
         title="购物车"
         data-link="cart"
         is-link
-        @click.native="goNext"
       />
       <van-cell
+        @click.native="goNext"
         title="个人中心"
         data-link="profile"
         is-link
-        @click.native="goNext"
       />
     </van-cell-group>
   </div>

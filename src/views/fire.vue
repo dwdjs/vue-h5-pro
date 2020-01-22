@@ -1,26 +1,26 @@
 <template>
   <div class="page-fire">
     <div class="show-type">List</div>
-    <div class="pro-list column-3" :class="classList.list">
+    <div :class="classList.list" class="pro-list column-3">
       <article
         v-for="(item, index) in list"
         :key="item.biz_id"
         :class="classList.item"
         :data-id="item.biz_id"
         :data-index="index"
+        @click="goNext($event)"
         data-link="detail"
         class="item"
-        @click="goNext($event)"
       >
         <div class="media-wrap">
-          <img class="cover full" :src="item.thumbnail" :alt="item.title">
+          <img :src="item.thumbnail" :alt="item.title" class="cover full">
         </div>
         <div class="main">
           <div class="flex-start">
             <div class="title max-line-2">{{ item.title }}</div>
             <!-- <div class="desc"></div> -->
             <div class="tags">
-              <span v-for="tag in item.tags" :key="tag.text" class="tag" :style="`backgroundColor: ${tag.background}`">{{ tag.text }}</span>
+              <span v-for="tag in item.tags" :key="tag.text" :style="`backgroundColor: ${tag.background}`" class="tag">{{ tag.text }}</span>
             </div>
           </div>
           <div class="flex-end width-full">

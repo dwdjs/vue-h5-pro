@@ -2,19 +2,19 @@
   <div class="page-search">
     <v-search
       v-model="value"
+      @search="onSearch"
       placeholder="请输入搜索关键词"
       show-action
       shape="round"
-      @search="onSearch"
     >
       <div slot="action" @click="onSearch">搜索</div>
     </v-search>
     <van-search
       v-model="value"
+      @search="onSearch"
       placeholder="请输入搜索关键词"
       show-action
       shape="round"
-      @search="onSearch"
     >
       <div slot="action" @click="onSearch">搜索</div>
     </van-search>

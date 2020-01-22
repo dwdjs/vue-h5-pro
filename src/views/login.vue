@@ -1,6 +1,6 @@
 <template>
   <div class="page-login full">
-    <div class="banner" :style="`backgroundImage: url(${banner})`" />
+    <div :style="`backgroundImage: url(${banner})`" class="banner" />
     <v-login class="login-box">login</v-login>
 
     <div class="socials-login">

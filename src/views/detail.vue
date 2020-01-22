@@ -1,10 +1,10 @@
 <template>
   <div class="page-detail detail">
     <div class="detail-header">
-      <div class="back" @click="$back">></div>
+      <div @click="$back" class="back">></div>
     </div>
 
-    <van-swipe class="detail-swipe" :autoplay="3000">
+    <van-swipe :autoplay="3000" class="detail-swipe">
       <van-swipe-item
         v-for="(thumb, index) in detail.thumb"
         :key="thumb"
@@ -18,7 +18,7 @@
       <van-cell>
         <div class="price-wrap">
           <span class="price-desc" alt="描述">{{ detail.priceDesc }}</span>
-          <span class="price detail-price B" v-html="formatPrice(detail.price)" />
+          <span v-html="formatPrice(detail.price)" class="price detail-price B" />
           <span class="del-price">{{ detail.marketPrice | price }}</span>
           <!-- <span class="price-fresh"></span>
           <span class="price-tags"></span>
@@ -40,30 +40,30 @@
     <div class="detail-activity">满减折扣等活动信息，最多显示两行，点击展开等</div>
 
     <van-cell-group class="detail-cell-group">
-      <van-cell value="进入店铺" icon="shop-o" is-link @click="sorry">
+      <van-cell @click="sorry" value="进入店铺" icon="shop-o" is-link>
         <template slot="title">
           <span class="van-cell-text">有赞的店</span>
           <van-tag class="detail-tag" type="danger">官方</van-tag>
         </template>
       </van-cell>
-      <van-cell title="线下门店" icon="location-o" is-link @click="sorry" />
+      <van-cell @click="sorry" title="线下门店" icon="location-o" is-link />
     </van-cell-group>
 
     <van-cell-group class="detail-cell-group">
-      <van-cell title="查看商品详情" is-link @click="sorry" />
+      <van-cell @click="sorry" title="查看商品详情" is-link />
     </van-cell-group>
 
     <van-goods-action>
-      <van-goods-action-icon icon="chat-o" @click="sorry">
+      <van-goods-action-icon @click="sorry" icon="chat-o">
         客服
       </van-goods-action-icon>
-      <van-goods-action-icon icon="cart-o" @click="onClickCart">
+      <van-goods-action-icon @click="onClickCart" icon="cart-o">
         购物车
       </van-goods-action-icon>
-      <van-goods-action-button type="warning" @click="sorry">
+      <van-goods-action-button @click="sorry" type="warning">
         加入购物车
       </van-goods-action-button>
-      <van-goods-action-button type="danger" @click="popSku">
+      <van-goods-action-button @click="popSku" type="danger">
         立即购买
       </van-goods-action-button>
     </van-goods-action>
@@ -80,12 +80,12 @@
       :close-on-click-overlay="closeOnClickOverlay"
       :message-config="messageConfig"
       :custom-sku-validator="customSkuValidator"
+      @buy-clicked="onBuyClicked"
+      @add-cart="onAddCartClicked"
       disable-stepper-input
       reset-stepper-on-hide
       safe-area-inset-bottom
       reset-selected-sku-on-hide
-      @buy-clicked="onBuyClicked"
-      @add-cart="onAddCartClicked"
     />
   </div>
 </template>
