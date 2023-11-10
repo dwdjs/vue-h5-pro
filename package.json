@@ -18,7 +18,7 @@
   "dependencies": {
     "@dwdjs/utils": "0.2.2",
     "@dwdjs/vant": "2.1.10",
-    "axios": "0.19.0",
+    "axios": "1.6.0",
     "vue": "2.6.10",
     "vue-router": "3.1.3",
     "vuex": "3.1.1"
